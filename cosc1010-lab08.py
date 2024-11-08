@@ -24,12 +24,12 @@ def string_converter(num):
         num = num.replace("-","")
     if "." in num:
         num_list=num.split(".")
-        if len(num_list) == 2 and num_list[0].isdigit and num_list[1].isdigit:
+        if len(num_list) == 2 and num_list[0].isdigit() and num_list[1].isdigit():
             if is_neg:
                 return -1 * float(num)
             else:
                 return float(num)
-    elif num.isdigit:
+    elif num.isdigit():
         if is_neg:
             return -1 * int(num)
         else:
@@ -63,6 +63,8 @@ print("*" * 75)
 # Remember all inputs are strings, but the function needs ints or floats
 # Call your function and print the resulting list
 
+y_values = []
+
 while True:
     m = input("Type exit to quit or enter your slope?")
     if m.lower() == "exit":
@@ -84,18 +86,19 @@ while True:
         break 
     else:
         upper_bound = string_converter(ub)
-    
-if lower_bound > upper_bound:
-    print("upper bound is lower than lower bound")
-y_values = []
-if lower_bound < upper_bound:
-    for x in range(lower_bound, upper_bound +1):
-        y = x * slope + y_intercept
-        y_values.append(y)
-
-print(f"{y_values}")
 
 
+def slope_values(y_values):
+    if lower_bound > upper_bound:
+        print("upper bound is lower than lower bound")
+        return None
+    if lower_bound < upper_bound:
+        for x in range(lower_bound, upper_bound +1):
+            y = x * slope + y_intercept
+            y_values.append(y)
+        return y_values
+
+print(slope_values(y_values))
 
 print("*" * 75)
 
@@ -110,28 +113,45 @@ print("*" * 75)
 
 
 
+
 while True:
-    first_val = input("Type exit to quit or enter your first value")
+    first_val = input("Type exit to quit or enter your first value(a)")
     if first_val.lower() == "exit":
-        break 
+        break
     else:
         a = string_converter(first_val)
-    second_val = input("Type exit to quit or enter your second value")
+    second_val = input("Type exit to quit or enter your second value(b)")
     if second_val.lower() == "exit":
-        break 
+        break
     else:
         b = string_converter(second_val)
-    third_val = input("Type exit to quit or enter your third value")
+    third_val = input("Type exit to quit or enter your third value(c)")
     if third_val.lower() == "exit":
-        break 
+        break
     else:
         c = string_converter(third_val)
    
-squared_nums = []
-def quad_solve(a,b,c)
-    square_nums = b**2 - 4*a*c
-    if "-" in square_nums:
-        print(null)
-    elif "-" not in square_nums:
-        square_nums ** (1/2) = squared_nums
-        if 
+
+def quad_solve(a,b,c):
+    if a == 0:
+        print("a can not be 0")
+        return None, None
+    square_values = (b**2 - 4*a*c)
+    if square_values < 0:
+        print("null")
+        return None, None
+    squared_values = square_values ** (1/2)
+    neg_b = b * -1
+    positive_solution =  (neg_b + squared_values) / (2*a)
+    negative_solution = (neg_b - squared_values) / (2*a)
+    return positive_solution, negative_solution
+
+if a != False and b != False and c != False:
+    positive_solution, negative_solution = quad_solve(a, b, c)
+    if positive_solution is not None and negative_solution is not None:
+        if positive_solution == negative_solution:
+            print(f"The solution is x = {positive_solution}")
+        else:
+            print(f"The solutions are x = {positive_solution} or x = {negative_solution}")
+else:
+    print("Invalid input detected. Please enter valid numerical values.")
