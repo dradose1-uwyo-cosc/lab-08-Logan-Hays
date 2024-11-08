@@ -1,8 +1,8 @@
-# Your Name Here
+# Logan Hays
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section:
+# Submission Date 11/07/2024
+# Lab 08
+# Lab Section: 13
 # Sources, people worked with, help given to:
 # your
 # comments
@@ -13,6 +13,31 @@
 # If they can't be converted return false
 # Other wise return the converted int or float 
 # Floats should only have one decimal point in them 
+
+
+num = input("Please enter a number")
+
+def string_converter(num):
+    is_neg = False
+    if "-" in num:
+        is_neg = True
+        num = num.replace("-","")
+    if "." in num:
+        num_list=num.split(".")
+        if len(num_list) == 2 and num_list[0].isdigit and num_list[1].isdigit:
+            if is_neg:
+                return -1 * float(num)
+            else:
+                return float(num)
+    elif num.isdigit:
+        if is_neg:
+            return -1 * int(num)
+        else:
+            return int(num)
+    else:
+        return False
+    
+print(string_converter(num))
 
 
 print("*" * 75)
@@ -38,6 +63,40 @@ print("*" * 75)
 # Remember all inputs are strings, but the function needs ints or floats
 # Call your function and print the resulting list
 
+while True:
+    m = input("Type exit to quit or enter your slope?")
+    if m.lower() == "exit":
+        break 
+    else:
+        slope = string_converter(m)
+    b = input("Type exit to quit or enter your y_intercept?")
+    if b.lower() == "exit":
+        break 
+    else:
+        y_intercept = string_converter(b)
+    lb = input("Type exit to quit or enter your lower bound")
+    if lb.lower() == "exit":
+        break 
+    else:
+        lower_bound = string_converter(lb)
+    ub = input("Type exit to quit or enter your upper bound")
+    if ub.lower() == "exit":
+        break 
+    else:
+        upper_bound = string_converter(ub)
+    
+if lower_bound > upper_bound:
+    print("upper bound is lower than lower bound")
+y_values = []
+if lower_bound < upper_bound:
+    for x in range(lower_bound, upper_bound +1):
+        y = x * slope + y_intercept
+        y_values.append(y)
+
+print(f"{y_values}")
+
+
+
 print("*" * 75)
 
 
@@ -48,3 +107,31 @@ print("*" * 75)
 # Create a loop like above to prompt the user for input for the three values
 # Create a second function that just does the square root operation 
     # If the number you are trying to take the square root of is negative, return null
+
+
+
+while True:
+    first_val = input("Type exit to quit or enter your first value")
+    if first_val.lower() == "exit":
+        break 
+    else:
+        a = string_converter(first_val)
+    second_val = input("Type exit to quit or enter your second value")
+    if second_val.lower() == "exit":
+        break 
+    else:
+        b = string_converter(second_val)
+    third_val = input("Type exit to quit or enter your third value")
+    if third_val.lower() == "exit":
+        break 
+    else:
+        c = string_converter(third_val)
+   
+squared_nums = []
+def quad_solve(a,b,c)
+    square_nums = b**2 - 4*a*c
+    if "-" in square_nums:
+        print(null)
+    elif "-" not in square_nums:
+        square_nums ** (1/2) = squared_nums
+        if 
